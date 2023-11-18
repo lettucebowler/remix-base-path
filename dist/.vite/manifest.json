@@ -1,0 +1,37 @@
+{
+  "_components-RuHb5xcY.js": {
+    "file": "assets/components-RuHb5xcY.js",
+    "imports": [
+      "_jsx-runtime-NroC4D4D.js"
+    ]
+  },
+  "_jsx-runtime-NroC4D4D.js": {
+    "file": "assets/jsx-runtime-NroC4D4D.js"
+  },
+  "app/root.tsx": {
+    "file": "assets/root-oevQIEd6.js",
+    "imports": [
+      "_jsx-runtime-NroC4D4D.js",
+      "_components-RuHb5xcY.js"
+    ],
+    "isEntry": true,
+    "src": "app/root.tsx"
+  },
+  "app/routes/_index.tsx": {
+    "file": "assets/_index-DOzRwhMV.js",
+    "imports": [
+      "_jsx-runtime-NroC4D4D.js"
+    ],
+    "isEntry": true,
+    "src": "app/routes/_index.tsx"
+  },
+  "node_modules/.pnpm/@remix-run+dev@2.3.0_typescript@5.2.2_vite@5.0.0/node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx": {
+    "file": "assets/entry.client-n3AKH1rl.js",
+    "imports": [
+      "_jsx-runtime-NroC4D4D.js",
+      "_components-RuHb5xcY.js"
+    ],
+    "isEntry": true,
+    "src": "node_modules/.pnpm/@remix-run+dev@2.3.0_typescript@5.2.2_vite@5.0.0/node_modules/@remix-run/dev/dist/config/defaults/entry.client.tsx"
+  }
+}

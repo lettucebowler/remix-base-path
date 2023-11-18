@@ -20,11 +20,11 @@ if (vite) {
   app.use(vite.middlewares);
 } else {
   app.use(
-    "/build",
-    express.static("public/build", { immutable: true, maxAge: "1y" })
+    "/example/assets",
+    express.static("dist/assets", { immutable: true, maxAge: "1y" })
   );
 }
-app.use(express.static("public", { maxAge: "1h" }));
+app.use('/example', express.static("dist", { maxAge: "1h" }));
 
 // handle SSR requests
 app.all(
@@ -32,7 +32,7 @@ app.all(
   createRequestHandler({
     build: vite
       ? () => unstable_loadViteServerBuild(vite)
-      : await import("./build/index.js"),
+      : await import("./dist/server/index.js"),
   })
 );
 

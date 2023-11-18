@@ -1,0 +1,47 @@
+import{r as d,j as x}from"./jsx-runtime-NroC4D4D.js";import{i as P,E as S,A as T,D as $,p as R,u as A,l as B,r as L,c as X,R as F,a as I,b as H}from"./components-RuHb5xcY.js";/**
+ * @remix-run/react v2.3.0
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */class U extends d.Component{constructor(r){super(r),this.state={error:r.error||null,location:r.location}}static getDerivedStateFromError(r){return{error:r}}static getDerivedStateFromProps(r,t){return t.location!==r.location?{error:r.error||null,location:r.location}:{error:r.error||t.error,location:t.location}}render(){return this.state.error?d.createElement(j,{error:this.state.error}):this.props.children}}function j({error:e}){if(console.error(e),P(e))return d.createElement(E,{title:"Unhandled Thrown Response!"},d.createElement("h1",{style:{fontFamily:"system-ui, sans-serif",padding:"2rem"}},e.status," ",e.statusText));let r;if(e instanceof Error)r=e;else{let t=e==null?"Unknown Error":typeof e=="object"&&"toString"in e?e.toString():JSON.stringify(e);r=new Error(t)}return d.createElement(E,{title:"Application Error!"},d.createElement("main",{style:{fontFamily:"system-ui, sans-serif",padding:"2rem"}},d.createElement("h1",{style:{fontSize:"24px"}},"Application Error"),d.createElement("pre",{style:{padding:"2rem",background:"hsla(10, 50%, 50%, 0.1)",color:"red",overflow:"auto"}},r.stack)))}function E({title:e,children:r}){return d.createElement("html",{lang:"en"},d.createElement("head",null,d.createElement("meta",{charSet:"utf-8"}),d.createElement("meta",{name:"viewport",content:"width=device-width,initial-scale=1,viewport-fit=cover"}),d.createElement("title",null,e)),d.createElement("body",null,r,d.createElement("script",{dangerouslySetInnerHTML:{__html:`
+              console.log(
+                "💿 Hey developer👋. You can provide a way better UX than this when your app throws errors. Check out https://remix.run/guides/errors for more information."
+              );
+            `}})))}/**
+ * @remix-run/react v2.3.0
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */function N(e){if(!e)return null;let r=Object.entries(e),t={};for(let[i,n]of r)if(n&&n.__type==="RouteErrorResponse")t[i]=new S(n.status,n.statusText,n.data,n.internal===!0);else if(n&&n.__type==="Error"){if(n.__subType){let s=window[n.__subType];if(typeof s=="function")try{let a=new s(n.message);a.stack=n.stack,t[i]=a}catch{}}if(t[i]==null){let s=new Error(n.message);s.stack=n.stack,t[i]=s}}else t[i]=n;return t}/**
+ * @remix-run/react v2.3.0
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */function z(e){return e.headers.get("X-Remix-Catch")!=null}function J(e){return e.headers.get("X-Remix-Error")!=null}function W(e){return K(e)&&e.status>=400&&e.headers.get("X-Remix-Error")==null&&e.headers.get("X-Remix-Catch")==null&&e.headers.get("X-Remix-Response")==null}function V(e){return e.headers.get("X-Remix-Redirect")!=null}function G(e){var r;return!!((r=e.headers.get("Content-Type"))!==null&&r!==void 0&&r.match(/text\/remix-deferred/))}function K(e){return e!=null&&typeof e.status=="number"&&typeof e.statusText=="string"&&typeof e.headers=="object"&&typeof e.body<"u"}async function C(e,r,t=0){let i=new URL(e.url);i.searchParams.set("_data",r);let n={signal:e.signal};if(e.method!=="GET"){n.method=e.method;let o=e.headers.get("Content-Type");o&&/\bapplication\/json\b/.test(o)?(n.headers={"Content-Type":o},n.body=JSON.stringify(await e.json())):o&&/\btext\/plain\b/.test(o)?(n.headers={"Content-Type":o},n.body=await e.text()):o&&/\bapplication\/x-www-form-urlencoded\b/.test(o)?n.body=new URLSearchParams(await e.text()):n.body=await e.formData()}t>0&&await new Promise(o=>setTimeout(o,5**t*10));let s=window.__remixRevalidation,a=await fetch(i.href,n).catch(o=>{if(typeof s=="number"&&s===window.__remixRevalidation&&(o==null?void 0:o.name)==="TypeError"&&t<3)return C(e,r,t+1);throw o});if(J(a)){let o=await a.json(),l=new Error(o.message);return l.stack=o.stack,l}if(W(a)){let o=await a.text(),l=new Error(o);return l.stack=void 0,l}return a}const Y="__deferred_promise:";async function Q(e){if(!e)throw new Error("parseDeferredReadableStream requires stream argument");let r,t={};try{let i=Z(e),s=(await i.next()).value;if(!s)throw new Error("no critical data");let a=JSON.parse(s);if(typeof a=="object"&&a!==null)for(let[o,l]of Object.entries(a))typeof l!="string"||!l.startsWith(Y)||(r=r||{},r[o]=new Promise((f,u)=>{t[o]={resolve:c=>{f(c),delete t[o]},reject:c=>{u(c),delete t[o]}}}));return(async()=>{try{for await(let o of i){let[l,...f]=o.split(":"),u=f.join(":"),c=JSON.parse(u);if(l==="data")for(let[m,h]of Object.entries(c))t[m]&&t[m].resolve(h);else if(l==="error")for(let[m,h]of Object.entries(c)){let y=new Error(h.message);y.stack=h.stack,t[m]&&t[m].reject(y)}}for(let[o,l]of Object.entries(t))l.reject(new T(`Deferred ${o} will never be resolved`))}catch(o){for(let l of Object.values(t))l.reject(o)}})(),new $({...a,...r})}catch(i){for(let n of Object.values(t))n.reject(i);throw i}}async function*Z(e){let r=e.getReader(),t=[],i=[],n=!1,s=new TextEncoder,a=new TextDecoder,o=async()=>{if(i.length>0)return i.shift();for(;!n&&i.length===0;){let f=await r.read();if(f.done){n=!0;break}t.push(f.value);try{let c=a.decode(v(...t)).split(`
+
+`);if(c.length>=2&&(i.push(...c.slice(0,-1)),t=[s.encode(c.slice(-1).join(`
+
+`))]),i.length>0)break}catch{continue}}return i.length>0||t.length>0&&(i=a.decode(v(...t)).split(`
+
+`).filter(u=>u),t=[]),i.shift()},l=await o();for(;l;)yield l,l=await o()}function v(...e){let r=new Uint8Array(e.reduce((i,n)=>i+n.length,0)),t=0;for(let i of e)r.set(i,t),t+=i.length;return r}/**
+ * @remix-run/react v2.3.0
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */function k(e){let r={};return Object.values(e).forEach(t=>{let i=t.parentId||"";r[i]||(r[i]=[]),r[i].push(t)}),r}function q(e,r,t,i){return p(r,t,i,"",k(r),e)}function p(e,r,t,i="",n=k(e),s){return(n[i]||[]).map(a=>{let o=r==null?void 0:r[a.id],l={id:a.id,index:a.index,path:a.path,async loader({request:u}){let c=r[a.id]?R(a,r[a.id]):Promise.resolve();try{return a.hasLoader?g(u,a):null}finally{await c}},async action({request:u}){let c=r[a.id]?R(a,r[a.id]):Promise.resolve();try{if(!a.hasAction){let m=`Route "${a.id}" does not have an action, but you are trying to submit to it. To fix this, please add an \`action\` function to the route`;return console.error(m),Promise.reject(new S(405,"Method Not Allowed",new Error(m),!0))}return g(u,a)}finally{await c}},...o?{Component:D(o),ErrorBoundary:o.ErrorBoundary?o.ErrorBoundary:a.id==="root"?()=>d.createElement(j,{error:A()}):void 0,handle:o.handle,shouldRevalidate:s?b(a.id,o.shouldRevalidate,s):o.shouldRevalidate}:{lazy:async()=>{let u=await ee(a,r);return s&&(u.shouldRevalidate=b(a.id,u.shouldRevalidate,s)),u}}},f=p(e,r,t,a.id,n,s);return f.length>0&&(l.children=f),l})}function b(e,r,t){let i=!1;return n=>i?r?r(n):n.defaultShouldRevalidate:(i=!0,t.has(e))}async function ee(e,r){let t=await B(e,r);return await R(e,t),{Component:D(t),ErrorBoundary:t.ErrorBoundary,handle:t.handle,links:t.links,meta:t.meta,shouldRevalidate:t.shouldRevalidate}}async function g(e,r){let t=await C(e,r.id);if(t instanceof Error)throw t;if(V(t))throw te(t);if(z(t))throw t;return G(t)&&t.body?await Q(t.body):t}function te(e){let r=parseInt(e.headers.get("X-Remix-Status"),10)||302,t=e.headers.get("X-Remix-Redirect"),i={},n=e.headers.get("X-Remix-Revalidate");n&&(i["X-Remix-Revalidate"]=n);let s=e.headers.get("X-Remix-Reload-Document");return s&&(i["X-Remix-Reload-Document"]=s),L(t,{status:r,headers:i})}function D(e){if(e.default==null)return;if(!(typeof e.default=="object"&&Object.keys(e.default).length===0))return e.default}let w;let _,le=new Promise(e=>{_=e}).catch(()=>{}),re=()=>{};function ie(e){if(!w){let s=window.__remixContext.url,a=window.location.pathname;if(s!==a){let f=`Initial URL (${s}) does not match URL at time of hydration (${a}), reloading page...`;return console.error(f),window.location.reload(),d.createElement(d.Fragment,null)}let o=p(window.__remixManifest.routes,window.__remixRouteModules,window.__remixContext.future),l=window.__remixContext.state;l&&l.errors&&(l={...l,errors:N(l.errors)}),w=X(o,{hydrationData:l,future:{v7_normalizeFormMethod:!0,v7_fetcherPersist:window.__remixContext.future.v3_fetcherPersist}}),w.createRoutesForHMR=q,window.__remixRouter=w,_&&_(w)}let[r,t]=d.useReducer(re,window.__remixContext.criticalCss);window.__remixClearCriticalCss=t;let[i,n]=d.useState(w.state.location);return d.useLayoutEffect(()=>w.subscribe(s=>{s.location!==i&&n(s.location)}),[i]),d.createElement(F.Provider,{value:{manifest:window.__remixManifest,routeModules:window.__remixRouteModules,future:window.__remixContext.future,criticalCss:r}},d.createElement(U,{location:i},d.createElement(I,{router:w,fallbackElement:null,future:{v7_startTransition:!0}})))}var O,M=H;M.createRoot,O=M.hydrateRoot;d.startTransition(()=>{O(document,x.jsx(d.StrictMode,{children:x.jsx(ie,{})}))});

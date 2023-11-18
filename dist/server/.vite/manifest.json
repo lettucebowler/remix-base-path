@@ -1,0 +1,7 @@
+{
+  "virtual:server-entry": {
+    "file": "index.js",
+    "isEntry": true,
+    "src": "virtual:server-entry"
+  }
+}
